@@ -14,7 +14,8 @@ var f = function(x, y) {
   //return step(scale(source(x, y)));
   //return step(gradient(x, y) + noise(x, y));
   //return gradient(x, y) + simplex(x/16, y/16) + simplex(x/32, y/32) + simplex(x/64, y/64) + simplex(x/8, y/8);
-  return octaves(x, y);
+  //return octaves(x, y);
+  return step(gradient(x, y + noise(x, y) * 100));
 };
 
 noisecomp.test(f);

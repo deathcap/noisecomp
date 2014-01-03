@@ -9,11 +9,7 @@ var step = noisecomp.transformers.step(0.5, 0, 1);
 
 var f = function(x, y) {
   //return step(scale(source(x, y)));
-  //return gradient(x, y);
-  if (x > 290)
-    return 1;
-  else
-    return 0;
+  return gradient(x, y);
 };
 
 noisecomp.test(f);

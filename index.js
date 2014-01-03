@@ -32,6 +32,8 @@ module.exports = {
     }
 
     canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;');
+    canvas.setAttribute('width', width);
+    canvas.setAttribute('height', height);
     var context = canvas.getContext('2d');
     var imageData = context.createImageData(width, height);
     var rgbaData = imageData.data;

@@ -55,7 +55,7 @@ module.exports = {
     var n = data.length;
     while (n-- > 0) {
       var x = n % width;
-      var y = n / width;
+      var y = Math.floor(n / width);
 
       data[n] = cb(x, y);
     }

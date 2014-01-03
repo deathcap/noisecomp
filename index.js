@@ -35,13 +35,12 @@ module.exports = {
 
     canvas.setAttribute('style', 'border: 1px solid black; width: '+(width * scale)+'px; height: '+(height * scale)+'px;'+
 // http://stackoverflow.com/questions/7615009/disable-interpolation-when-scaling-a-canvas
-'    image-rendering: optimizeSpeed;             // Older versions of FF' + 
-'    image-rendering: -moz-crisp-edges;          // FF 6.0+' + 
-'    image-rendering: -webkit-optimize-contrast; // Webkit' + 
-'                                                //  (Safari now, Chrome soon)' + 
-'    image-rendering: -o-crisp-edges;            // OS X & Windows Opera (12.02+)' + 
-'    image-rendering: optimize-contrast;         // Possible future browsers.' + 
-'    -ms-interpolation-mode: nearest-neighbor;   // IE');
+'    image-rendering: optimizeSpeed;' +             // Older versions of FF
+'    image-rendering: -moz-crisp-edges;' +          // FF 6.0+
+'    image-rendering: -webkit-optimize-contrast;' + // Webkit (Safari now, Chrome soon)
+'    image-rendering: -o-crisp-edges;' +            // OS X & Windows Opera (12.02+)
+//'    image-rendering: optimize-contrast;' +         // Possible future browsers.
+'    -ms-interpolation-mode: nearest-neighbor;');   // IE
 
     canvas.setAttribute('width', width);
     canvas.setAttribute('height', height);
@@ -76,13 +75,13 @@ module.exports = {
 
 
   test: function(f) {
-    var width = 1000;
-    var height = 1000;
+    var width = 100;
+    var height = 100;
 
     var data = new Float32Array(width * height);
 
     module.exports.fillXY(data, width, height, f);
-    module.exports.showCanvas(data, width, height);
+    module.exports.showCanvas(data, width, height, 10);
   },
 
   // implicit 2-dimensional functions

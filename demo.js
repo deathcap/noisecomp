@@ -2,6 +2,7 @@
 
 var noisecomp = require('./');
 var ndarray = require('ndarray');
+var alea = require('alea');
 
 var showCanvas = function(indexData, width, height, colors) {
   var canvas = document.createElement('canvas');
@@ -29,8 +30,9 @@ var height = 1000;
 
 var data = new Uint8Array(width * height);
 var n = data.length;
+var random = alea(42);
 while (n-- > 0) {
-  data[n] = Math.floor(Math.random() * 2);
+  data[n] = Math.floor(random() * 2);
 }
 
 var colors = [

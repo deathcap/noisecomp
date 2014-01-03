@@ -1,0 +1,16 @@
+{
+  "name": "noisecomp",
+  "version": "0.0.1",
+  "description": "coherent noise composable functions",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deathcap/noisecomp.git"
+  },
+  "keywords": [
+    "noise"
+  ],
+  "scripts": {
+    "start": "beefy demo.js"
+  },
+  "license": "MIT"
+}

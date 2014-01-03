@@ -1,0 +1,5 @@
+# noisecomp
+
+## License
+
+MIT

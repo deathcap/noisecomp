@@ -62,12 +62,20 @@ module.exports.scale = function(x, fromLow, fromHigh, toLow, toHigh) {
   return (x - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
 }
 
-module.exports.gradient = function(opts) {
+module.exports.checkerboard = function(opts) {
   return function(x, y) {
-    var dx = x - 0;
-    var dy = y - 1;
-    return dx + dy;
-  };
+    return (x + y) & 1;
+  }
+};
+
+module.exports.test = function(f) {
+  var width = 1000;
+  var height = 1000;
+
+  var data = new Float32Array(width * height);
+
+  module.exports.fillXY(data, width, height, f);
+  module.exports.showCanvas(data, width, height);
 };
 
 window.noisecomp = module.exports; // for debugging

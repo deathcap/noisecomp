@@ -27,7 +27,17 @@ module.exports.showCanvas = function(indexData, width, height, colors) {
   context.putImageData(imageData, 0, 0);
 
   document.body.appendChild(canvas);
-}
+};
+
+module.exports.fillXY = function(data, width, height, cb) {
+  var n = data.length;
+  while (n-- > 0) {
+    var x = n % width;
+    var y = n / width;
+
+    data[n] = cb(x, y);
+  }
+};
 
 
 module.exports.gradient = function(opts) {

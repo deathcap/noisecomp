@@ -86,6 +86,16 @@ module.exports = {
       return function(x, y) {
         return random(x, y);
       };
+    },
+
+    gradient: function(opts) {
+      var minX = opts.minX || 0;
+      var maxX = opts.maxX || 1000;
+      var minY = opts.minY || 0;
+      var maxY = opts.maxY || 1000;
+      return function(x, y) {
+        return x / (maxX - minX) + y / (maxY - minY);
+      };
     }
   },
 

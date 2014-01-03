@@ -1,6 +1,7 @@
 'use strict';
 
-var alea = require('alea');
+var Alea = require('alea');
+var SimplexNoise = require('simplex-noise');
 
 var indexedToRGBA = function(index, colors) {
   if (colors === undefined) 
@@ -95,7 +96,7 @@ module.exports = {
 
     noise: function(opts) {
       var seed = opts.seed;
-      var random = opts.random || alea(seed);
+      var random = opts.random || Alea(seed);
       return function(x, y) {
         return random(x, y);
       };
@@ -107,7 +108,16 @@ module.exports = {
       return function(x, y) {
         return y / (maxY - minY);
       };
-    }
+    },
+
+    simplex: function(opts) {
+      var seed = opts.seed || 0;
+      var simplex = new SimplexNoise(new Alea(seed));
+
+      return function(x, y) {
+        return simplex.noise2D(x, y); // TODO: bind?
+      };
+    },
   },
 
 

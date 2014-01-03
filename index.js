@@ -20,7 +20,7 @@ var floatToRGBA = function(f) {
 };
 
 module.exports = {
-  showCanvas: function(sourceData, width, height, convert) {
+  showCanvas: function(sourceData, width, height, scale, convert) {
     var canvases = document.getElementsByTagName('canvas');
     var canvas = (canvases.length > 0) ? canvases[0] : document.createElement('canvas');
 
@@ -31,7 +31,9 @@ module.exports = {
         convert = floatToRGBA;
     }
 
-    canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;'+
+    scale = scale || 1;
+
+    canvas.setAttribute('style', 'border: 1px solid black; width: '+(width * scale)+'px; height: '+(height * scale)+'px;'+
 // http://stackoverflow.com/questions/7615009/disable-interpolation-when-scaling-a-canvas
 '    image-rendering: optimizeSpeed;             // Older versions of FF' + 
 '    image-rendering: -moz-crisp-edges;          // FF 6.0+' + 

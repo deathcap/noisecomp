@@ -40,19 +40,13 @@ var data = new Uint8Array(width * height);
 var n = data.length;
 var random = alea(42);
 while (n-- > 0) {
+  var x = n % width;
+  var y = n / width;
+
   data[n] = Math.floor(random() * 2);
+  if (y > 100) data[n] = 0;
 }
 
-var fillXY = function(data, width, height) {
-  var x = width;
-  var y = height;
-  while (x--) {
-    while (y--) {
-      data[x + width * y] = 0;
-    }
-  }
-};
-window.fillXY=fillXY;
 window.showCanvas = showCanvas;
 
 showCanvas(data, width, height);

@@ -1,27 +1,37 @@
 'use strict';
 
-module.exports.showCanvas = function(indexData, width, height, colors) {
+var indexedToRGBA = function(index, colors) {
   if (colors === undefined) 
     colors = [
     [255,255,255,255],   // 0 white
     [0,0,0,255]          // 1 black
   ];
 
+  return colors[index];
+};
+
+module.exports.showCanvas = function(sourceData, width, height, convert) {
   var canvases = document.getElementsByTagName('canvas');
   var canvas = (canvases.length > 0) ? canvases[0] : document.createElement('canvas');
+
+  if (convert === undefined) {
+    if (sourceData instanceof Uint8Array)
+      convert = indexedToRGBA;
+  }
 
   canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;');
   var context = canvas.getContext('2d');
   var imageData = context.createImageData(width, height);
   var rgbaData = imageData.data;
 
-  var i = indexData.length;
+  var i = sourceData.length;
   while(i--) {
-    var index = indexData[i];
-    rgbaData[i * 4 + 0] = colors[index][0]; // TODO: use ndarray?
-    rgbaData[i * 4 + 1] = colors[index][1];
-    rgbaData[i * 4 + 2] = colors[index][2];
-    rgbaData[i * 4 + 3] = colors[index][3];
+    var rgba = convert(sourceData[i]);
+
+    rgbaData[i * 4 + 0] = rgba[0];
+    rgbaData[i * 4 + 1] = rgba[1];
+    rgbaData[i * 4 + 2] = rgba[2];
+    rgbaData[i * 4 + 3] = rgba[3];
   }
 
   context.putImageData(imageData, 0, 0);
@@ -38,7 +48,6 @@ module.exports.fillXY = function(data, width, height, cb) {
     data[n] = cb(x, y);
   }
 };
-
 
 module.exports.gradient = function(opts) {
   return function(x, y) {

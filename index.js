@@ -31,7 +31,16 @@ module.exports = {
         convert = floatToRGBA;
     }
 
-    canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;');
+    canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;'+
+// http://stackoverflow.com/questions/7615009/disable-interpolation-when-scaling-a-canvas
+'    image-rendering: optimizeSpeed;             // Older versions of FF' + 
+'    image-rendering: -moz-crisp-edges;          // FF 6.0+' + 
+'    image-rendering: -webkit-optimize-contrast; // Webkit' + 
+'                                                //  (Safari now, Chrome soon)' + 
+'    image-rendering: -o-crisp-edges;            // OS X & Windows Opera (12.02+)' + 
+'    image-rendering: optimize-contrast;         // Possible future browsers.' + 
+'    -ms-interpolation-mode: nearest-neighbor;   // IE');
+
     canvas.setAttribute('width', width);
     canvas.setAttribute('height', height);
     var context = canvas.getContext('2d');

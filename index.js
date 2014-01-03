@@ -75,13 +75,14 @@ module.exports = {
 
 
   test: function(f) {
-    var width = 100;
-    var height = 100;
+    var width = 1000;
+    var height = 1000;
+    var scale = 1;
 
     var data = new Float32Array(width * height);
 
     module.exports.fillXY(data, width, height, f);
-    module.exports.showCanvas(data, width, height, 10);
+    module.exports.showCanvas(data, width, height, scale);
   },
 
   // implicit 2-dimensional functions

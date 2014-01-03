@@ -43,6 +43,18 @@ while (n-- > 0) {
   data[n] = Math.floor(random() * 2);
 }
 
+var fillXY = function(data, width, height) {
+  var x = width;
+  var y = height;
+  while (x--) {
+    while (y--) {
+      data[x + width * y] = 0;
+    }
+  }
+};
+window.fillXY=fillXY;
+window.showCanvas = showCanvas;
+
 showCanvas(data, width, height);
 //window.showCanvas = showCanvas;
 

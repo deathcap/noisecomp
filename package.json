@@ -12,5 +12,8 @@
   "scripts": {
     "start": "beefy demo.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ndarray": "~1.0.9"
+  }
 }

@@ -29,8 +29,9 @@ var height = 1000;
 
 var data = new Uint8Array(width * height);
 var n = data.length;
-while (n-- > 0)
-  data[n] = n % 2;
+while (n-- > 0) {
+  data[n] = Math.floor(Math.random() * 2);
+}
 
 var colors = [
   [255,255,255,255],   // 0 white

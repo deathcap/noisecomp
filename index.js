@@ -10,6 +10,13 @@ var indexedToRGBA = function(index, colors) {
   return colors[index];
 };
 
+var floatToRGBA = function(f) {
+  // grayscale, 1.0 = black, 0.0 = white
+  var n = 255 - Math.ceil(f * 255);
+
+  return [n, n, n, 255];
+};
+
 module.exports.showCanvas = function(sourceData, width, height, convert) {
   var canvases = document.getElementsByTagName('canvas');
   var canvas = (canvases.length > 0) ? canvases[0] : document.createElement('canvas');
@@ -17,6 +24,8 @@ module.exports.showCanvas = function(sourceData, width, height, convert) {
   if (convert === undefined) {
     if (sourceData instanceof Uint8Array)
       convert = indexedToRGBA;
+    else if (sourceData instanceof Float32Array)
+      convert = floatToRGBA;
   }
 
   canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;');

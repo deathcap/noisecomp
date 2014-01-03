@@ -11,7 +11,9 @@ var showCanvas = function(indexData, width, height, colors) {
     [0,0,0,255]          // 1 black
   ];
 
-  var canvas = document.createElement('canvas');
+  var canvases = document.getElementsByTagName('canvas');
+  var canvas = (canvases.length > 0) ? canvases[0] : document.createElement('canvas');
+
   canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;');
   var context = canvas.getContext('2d');
   var imageData = context.createImageData(width, height);
@@ -42,3 +44,5 @@ while (n-- > 0) {
 }
 
 showCanvas(data, width, height);
+//window.showCanvas = showCanvas;
+

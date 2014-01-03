@@ -58,6 +58,10 @@ module.exports.fillXY = function(data, width, height, cb) {
   }
 };
 
+module.exports.scale = function(x, fromLow, fromHigh, toLow, toHigh) {
+  return (x - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+}
+
 module.exports.gradient = function(opts) {
   return function(x, y) {
     var dx = x - 0;

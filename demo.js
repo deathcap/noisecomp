@@ -12,7 +12,9 @@ var data = new Float32Array(width * height);
 var random = alea(42);
 noisecomp.fillXY(data, width, height, function(x, y) {
   var ret = random();
-  if (y > 100) ret = 1.0;
+  if (y > 100) ret = 0.5;
+
+  ret = noisecomp.scale(ret, 0, 1, 0, 0.75);
   return ret;
 });
 

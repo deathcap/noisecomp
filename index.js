@@ -1,5 +1,7 @@
 'use strict';
 
+var alea = require('alea');
+
 var indexedToRGBA = function(index, colors) {
   if (colors === undefined) 
     colors = [
@@ -62,12 +64,6 @@ module.exports.scale = function(x, fromLow, fromHigh, toLow, toHigh) {
   return (x - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
 }
 
-module.exports.checkerboard = function(opts) {
-  return function(x, y) {
-    return (x + y) & 1;
-  }
-};
-
 module.exports.test = function(f) {
   var width = 1000;
   var height = 1000;
@@ -79,4 +75,21 @@ module.exports.test = function(f) {
 };
 
 window.noisecomp = module.exports; // for debugging
+
+module.exports.i2d = { // implicit 2-dimensional functions
+  checkerboard: function(opts) {
+    return function(x, y) {
+      return (x + y) & 1;
+    };
+  },
+
+  noise: function(opts) {
+    var seed = opts.seed;
+    var random = opts.random || alea(seed);
+    return function(x, y) {
+      return random(x, y);
+    };
+  }
+};
+
 

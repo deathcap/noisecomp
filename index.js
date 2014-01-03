@@ -118,6 +118,15 @@ module.exports = {
         return simplex.noise2D(x, y); // TODO: bind?
       };
     },
+
+    octaves: function(opts) {
+      //var count = opts.count || 6; // TODO
+      var source = opts.source;
+
+      return function(x, y) {
+        return source(x/8, y/8) + source(x/16, y/16) + source(x/32, y/32) + source(x/64, y/64);
+      };
+    },
   },
 
 

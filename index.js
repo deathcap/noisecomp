@@ -88,13 +88,11 @@ module.exports = {
       };
     },
 
-    gradient: function(opts) {
-      var minX = opts.minX || 0;
-      var maxX = opts.maxX || 1000;
+    gradientY: function(opts) {
       var minY = opts.minY || 0;
-      var maxY = opts.maxY || 1000;
+      var maxY = opts.maxY || 1;
       return function(x, y) {
-        return x / (maxX - minX) + y / (maxY - minY);
+        return y / (maxY - minY);
       };
     }
   },

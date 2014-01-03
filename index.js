@@ -105,9 +105,9 @@ module.exports = {
       }
     },
 
-    step: function(threshold, above, below) {
+    step: function(threshold, below, above) {
       return function(x) {
-        return (x >= threshold) ? above : below;
+        return (x < threshold) ? below : above;
       }
     },
   },

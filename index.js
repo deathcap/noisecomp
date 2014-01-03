@@ -61,9 +61,6 @@ module.exports = {
     }
   },
 
-  scale: function(x, fromLow, fromHigh, toLow, toHigh) {
-    return (x - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
-  },
 
   test: function(f) {
     var width = 1000;
@@ -75,7 +72,8 @@ module.exports = {
     module.exports.showCanvas(data, width, height);
   },
 
-  i2d: { // implicit 2-dimensional functions
+  // implicit 2-dimensional functions
+  generators: {
     checkerboard: function(opts) {
       return function(x, y) {
         return (x + y) & 1;
@@ -89,7 +87,22 @@ module.exports = {
         return random(x, y);
       };
     }
- }
+  },
+
+
+  transformers: {
+    scale: function(fromLow, fromHigh, toLow, toHigh) {
+      return function(x) {
+        return (x - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+      }
+    },
+
+    step: function(threshold, above, below) {
+      return function(x) {
+        return (x >= threshold) ? above : below;
+      }
+    },
+  },
 };
 
 

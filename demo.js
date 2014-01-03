@@ -5,6 +5,12 @@ var ndarray = require('ndarray');
 var alea = require('alea');
 
 var showCanvas = function(indexData, width, height, colors) {
+  if (colors === undefined) 
+    colors = [
+    [255,255,255,255],   // 0 white
+    [0,0,0,255]          // 1 black
+  ];
+
   var canvas = document.createElement('canvas');
   canvas.setAttribute('style', 'border: 1px solid black; width: '+width+'px; height: '+height+'px;');
   var context = canvas.getContext('2d');
@@ -35,8 +41,4 @@ while (n-- > 0) {
   data[n] = Math.floor(random() * 2);
 }
 
-var colors = [
-  [255,255,255,255],   // 0 white
-  [0,0,0,255]          // 1 black
-];
-showCanvas(data, width, height, colors);
+showCanvas(data, width, height);

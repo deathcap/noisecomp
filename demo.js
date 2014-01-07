@@ -15,7 +15,28 @@ var f = function(x, y) {
   //return step(gradient(x, y) + noise(x, y));
   //return gradient(x, y) + simplex(x/16, y/16) + simplex(x/32, y/32) + simplex(x/64, y/64) + simplex(x/8, y/8);
   //return octaves(x, y);
-  return step(gradient(x, y + octaves(x, y) * 10));
+  //return step(gradient(x, y + octaves(x, y) * 10));
+
+  x /= 1000;
+  var gl_FragColor;
+
+  var tileCount = 5;
+  var uStart = 0.0;
+  var uEnd = 0.5;
+
+  var tile = function(x, times) {
+    return x % (1 / times) * times;
+  };
+
+  var scale = function(x, fromLow, fromHigh, toLow, toHigh) {
+    return (x - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+  };
+
+  gl_FragColor = scale(tile(x, tileCount), 0, 1, uStart, uEnd);
+
+  //gl_FragColor = x % mod * tileCount;
+
+  return gl_FragColor;
 };
 
 noisecomp.test(f);
